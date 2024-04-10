@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card</title>
+    <style>
+        #main-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            width: 85%;
+            height: 300px;
+            background-color: #FFF7FC;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            align-items: center;
+            margin: auto;
+            margin-top: 100px;
+        }
+        .greeting-card {
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            background: #FFCDEA;
+            font-size: 25px;
+            letter-spacing: .5px;
+            height: 200px;
+            margin: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: cursive;
+            color: #86469C;
+            border-radius: 20px;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+     // Create a root for rendering React components
+    let reactRoot = ReactDOM.createRoot(document.getElementById('root'))
+
+     // Component for each greeting card
+    function GreetingCard ({greeting,name}){
+        return(
+                <div className="greeting-card">
+                    <p>{greeting} {name}</p>
+                </div>
+        )
+    }
+
+     // Main App component
+    function App(){
+        let [content,setContent] = React.useState([
+            {greeting: "Happy Birthday",name: "Sundar"},
+            {greeting: "Good Morning",name: "Inbha"},
+            {greeting: "Hello",name: "Rishika"},
+        ]);
+
+        // Return JSX for the App component
+        return(
+            <>
+                <h1 style={{textAlign: 'center',color: '#F2613F',letterSpacing: '.5px'}}>Greeting Card</h1>
+                <div id='main-container'>
+                    {content.map((content,index) => {
+                        return <GreetingCard {...content} key={index} />
+                    })}
+                </div>
+            </>
+        )   
+    }
+
+     // Render the App component to the root element
+    reactRoot.render(<App />)
+  </script>
+</html>
